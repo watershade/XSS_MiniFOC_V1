@@ -1,0 +1,7 @@
+Change Net Name : Old Net Name=MC_CH2 New Net Name=MC_CHB
+Added Pin To Net: NetName=MC_CHA Pin=U1-32
+Added Pin To Net: NetName=MC_CHA Pin=U5-12
+Added Net: Name=MC_CHA
+Added Pin To Net: NetName=MC_CHC Pin=U1-28
+Added Pin To Net: NetName=MC_CHC Pin=U5-16
+Added Net: Name=MC_CHC

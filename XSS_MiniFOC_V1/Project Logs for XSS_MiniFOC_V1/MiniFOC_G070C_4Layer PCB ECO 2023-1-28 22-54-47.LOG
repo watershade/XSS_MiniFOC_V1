@@ -1,0 +1,3 @@
+Change Component Footprint: Designator=RST Old Footprint=SW2_3*4*2 New Footprint=SW2_3*2*0.6
+Change Component Comment : Designator=RST Old Comment=PUSHBUTTON New Comment=switch
+Change Component Library : Designator=RST Old Library=XSS_IC.IntLib New Library=XSS_IC.SchLib

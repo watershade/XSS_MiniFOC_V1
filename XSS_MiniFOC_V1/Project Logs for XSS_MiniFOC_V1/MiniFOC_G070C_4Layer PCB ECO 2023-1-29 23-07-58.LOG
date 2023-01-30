@@ -1,0 +1,5 @@
+Removed Pin From Net: NetName=VM Pin=POW_IN-1
+Removed Pin From Net: NetName=PGND Pin=POW_IN-2
+Change Component Footprint: Designator=LD1 Old Footprint=LED_1608[0603]_AK_Green New Footprint=LED_0603_AK_Green
+Added Pin To Net: NetName=PGND Pin=POW_IN-1
+Added Pin To Net: NetName=VM Pin=POW_IN-2
