@@ -1,0 +1,563 @@
+<html>
+<head>
+<META http-equiv="Content-Type" content="text/html">
+<style type="text/css">
+		h1, h2, h3, h4, h5, h6 {
+			font-family : segoe ui;
+			color : black;
+			background-color : #EDE7D9;
+			padding: 0.3em;
+		}
+
+		h1 {
+			font-size: 1.2em;
+		}		
+
+		h2 {
+			font-size: 1.2em;
+		}
+
+		body {
+			font-family : segoe ui;
+		}
+
+		td, th {
+			padding: 0.5em;
+			text-align : left;
+			width: 10em;
+		}
+		th {
+			background-color : #EEEEEE;
+
+		}
+		th.column1, td.column1 {
+			text-align: left;
+			width : auto;
+		}
+		table {
+			width : 100%;
+			font-size: 0.9em;
+		}
+
+		.DRC_summary_header {
+			padding-bottom : 0.1em;
+			border : 0px solid black;
+			width: 100%;
+			align: left;
+		}
+
+		.DRC_summary_header_col1,
+		.DRC_summary_header_col2, 
+		.DRC_summary_header_col3 {
+			color : black;
+			font-size:100%;
+			padding : 0em;
+			padding-top : 0.2em;
+			padding-bottom 0.2em;
+			border : 0px solid black;
+			vertical-align: top;
+			text-align: left;
+		}
+
+		.DRC_summary_header_col1 {
+			font-weight: bold;
+			width: 9em;
+		}
+
+		.DRC_summary_header_col2 {
+			width: 0.1em;
+		
+		}
+
+		.DRC_summary_header_col3 {
+			width : auto;
+		}
+
+		.header_holder {
+		    Width = 100%;
+		    border = 0px solid green;
+		    padding = 0;
+		}
+
+
+		.front_matter, .front_matter_column1, .front_matter_column2, .front_matter_column3
+		{
+			left : 0;
+			top : 0;
+			padding: 0em;
+			padding-top : 0.1em;
+			border : 0px solid black;
+			width : 100%;
+			vertical-align: top;
+			text-align: left;
+		}
+
+		.front_matter_column1 {
+			width : 8em;
+			font-weight: bold;
+		}
+
+		.front_matter_column2 {
+			width: 0.1em;
+		}
+
+		.front_matter_column3 {
+			width : auto;
+		}
+
+		.total_column1, .total_column {
+			font-weight : bold;
+		}
+		.total_column1 {
+			text-align : left;
+		}
+		.warning, .error {
+			color : red;
+			font-weight : bold;
+		}
+		tr.onmouseout_odd {
+			background-color : #white;
+		}
+		tr.onmouseout_even { 
+			background-color : #FAFAFA;
+		}
+		tr.onmouseover_odd, tr.onmouseover_even { 
+			background-color : #EEEEEE;
+		} 
+		a:link, a:visited, .q a:link,.q a:active,.q {
+			color: #21489e; 
+		}
+		a:link.callback, a:visited.callback { 
+			color: #21489e;
+		}
+		a:link.customize, a:visited.customize {
+			color: #C0C0C0;
+			position: absolute; 
+			right: 10px;
+		}	
+		p.contents_level1 {
+			font-weight : bold;
+			font-size : 110%;
+			margin : 0.5em;
+		}
+		p.contents_level2 {
+			position : relative;
+			left : 20px;
+			margin : 0.5em;
+		}
+	</style><script type="text/javascript">
+		function coordToMils(coord) {
+			var number = coord / 10000;
+			
+			if (number != number.toFixed(3))
+				number = number.toFixed(3);
+
+			return number + 'mil'
+		}
+
+		function coordToMM(coord) {
+			var number = 0.0254 * coord / 10000;
+			
+			if (number != number.toFixed(4))
+				number = number.toFixed(4);
+			
+			return number + 'mm'
+		}
+	
+		function convertCoord(coordNode, units) {
+			for (var i = 0; i < coordNode.childNodes.length; i++) {
+				coordNode.removeChild(coordNode.childNodes[i]);
+			}
+
+			var coord = coordNode.getAttribute('value');
+			if (coord != null) {
+				if (units == 'mm') {
+					textNode = document.createTextNode(coordToMM(coord));
+					coordNode.appendChild(textNode);
+				} else if (units == 'mil') {
+					textNode = document.createTextNode(coordToMils(coord));		
+					coordNode.appendChild(textNode);	
+				}
+			}
+		}
+	
+		function convertUnits(unitNode, units) {
+			for (var i = 0; i < unitNode.childNodes.length; i++) {
+				unitNode.removeChild(unitNode.childNodes[i]);		
+			}
+		
+			textNode = document.createTextNode(units); 
+			unitNode.appendChild(textNode);
+		}
+	
+		function changeUnits(radio_input, units) {
+			if (radio_input.checked) {
+			
+				var elements = document.getElementsByName('coordinate');
+				if (elements) {
+					for (var i = 0; i < elements.length; i++) {
+						convertCoord(elements[i], units);
+					}
+				}
+	
+				var elements = document.getElementsByName('units');
+				if (elements) {
+					for (var i = 0; i < elements.length; i++) {
+						convertUnits(elements[i], units);
+					}
+				}
+			}
+		}
+	</script><title>Design Rule Verification Report</title>
+</head>
+<body onload=""><img ALT="Altium" src="
+			file://D:\Users\Public\Documents\Altium\AD22\Templates\AD_logo.png
+		"><h1>Design Rule Verification Report</h1>
+<table class="header_holder">
+<td class="column1">
+<table class="front_matter">
+<tr class="front_matter">
+<td class="front_matter_column1">Date:</td>
+<td class="front_matter_column2"></td>
+<td class="front_matter_column3">2023/2/19</td>
+</tr>
+<tr class="front_matter">
+<td class="front_matter_column1">Time:</td>
+<td class="front_matter_column2"></td>
+<td class="front_matter_column3">23:40:38</td>
+</tr>
+<tr class="front_matter">
+<td class="front_matter_column1">Elapsed Time:</td>
+<td class="front_matter_column2"></td>
+<td class="front_matter_column3">00:00:02</td>
+</tr>
+<tr class="front_matter">
+<td class="front_matter_column1">Filename:</td>
+<td class="front_matter_column2"></td>
+<td class="front_matter_column3"><a href="file:///E:\Workspace\EDA\Altium\XSS_MiniFOC_V1\XSS_MiniFOC_V1\MiniFOC_G070C_4Layer.PcbDoc" class="file"><acronym title="E:\Workspace\EDA\Altium\XSS_MiniFOC_V1\XSS_MiniFOC_V1\MiniFOC_G070C_4Layer.PcbDoc">E:\Workspace\EDA\Altium\XSS_MiniFOC_V1\XSS_MiniFOC_V1\MiniFOC_G070C_4Layer.PcbDoc</acronym></a></td>
+</tr>
+</table>
+</td>
+<td class="column2">
+<table class="DRC_summary_header">
+<tr>
+<td class="DRC_summary_header_col1">Warnings:</td>
+<td class="DRC_summary_header_col2"></td>
+<td class="DRC_summary_header_col3">0</td></tr>
+<tr>
+<td class="DRC_summary_header_col1">Rule Violations:</td>
+<td class="DRC_summary_header_col2"></td>
+<td class="DRC_summary_header_col3" style="color : red">65</td></tr>
+</table>
+</td>
+</table><a name="IDKRV5GHR3JHMIEE433UUR1A3LEOAE3T52QPAVQ1FVTMKY0ZIZIVXD"><h2>Summary</h2></a><table>
+<tr>
+<th class="column1">Warnings</th>
+<th class="column2">Count</th>
+</tr>
+<tr>
+<td style="font-weight : bold; text-align : right" class="column1">Total</td>
+<td style="font-weight : bold" class="column2">0</td>
+</tr>
+</table><br><table>
+<tr>
+<th class="column1">Rule Violations</th>
+<th class="column2">Count</th>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="#IDOYV0VL4NWZM4GZQJAOIJGAQGSJL55OBUOBV2ZOPVYOOFIW4Y232E">Clearance Constraint (Gap=0.178mm) (InComponentClass('SCC')),(All)</a></td>
+<td class="column2">0</td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="#IDSPRSSUBT4Z4JEQVONMO4ALHXFH5L2CIPX5HJNMDB5Q1SRLZN31EC">Clearance Constraint (Gap=0.254mm) (All),(All)</a></td>
+<td class="column2">44</td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="#ID12PEYZNSDB24JQY4JX5ZZ44FXCHZWNAPJHRLYCBSFEBZCR0RMEYB">Clearance Constraint (Gap=0.178mm) (InNetClass('NetsOnU5')),(All)</a></td>
+<td class="column2">0</td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="#IDGEUGZWIHEJOPGNOXNH5VR5U3BISEIDD5JJU35EDK43HHX20QQJLF">Clearance Constraint (Gap=0mm) (InComponentClass('NetTie')),(All)</a></td>
+<td class="column2">0</td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="#ID2AVWFTMH2HM4OV2IICZINOUCKO4LJAVVVXUJVGJZ0KS0NACCUUOE">Short-Circuit Constraint (Allowed=No) (All),(All)</a></td>
+<td class="column2">4</td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="#ID0BAJDIKW5QZUKPF1YWFLZ4CWKHJTBFV5B3DG3UNODU2GU4J1C5UH">Un-Routed Net Constraint ( (All) )</a></td>
+<td class="column2">0</td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="#IDMJMJ5DVNTZWFKPQCJHD1WQXOZMPDQEUK5CJC53JP2QS3YJBF0FPF">Modified Polygon (Allow modified: No), (Allow shelved: No)</a></td>
+<td class="column2">0</td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="#IDQBNFXQBSM5R5GEVAGJSXO4R5TBVJ0PL3UD1TLXNG0PLLJQGRPAUO">Width Constraint (Min=0.127mm) (Max=1mm) (Preferred=0.203mm) (All)</a></td>
+<td class="column2">0</td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="#IDQHR0I4KK2EH4E4PPEIJCGR4DMGVLLO3PZRUEJNHP0HRGPGAI4RKK">Width Constraint (Min=0.15mm) (Max=2.54mm) (Preferred=0.762mm) (InNetClass('HighPow'))</a></td>
+<td class="column2">0</td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="#IDDYMSFC3P1TJ2WDQVXUCT4SMPVE5MCGKYMODKDJINXBSZBSCOYJ">Width Constraint (Min=0.15mm) (Max=2mm) (Preferred=0.381mm) (InNetClass('LowPow'))</a></td>
+<td class="column2">0</td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="#IDZS2ERRDTYFZRIXRQXNZQJ3WFHN2POSYHHXMOLBKS30NBCD3ZFG1N">Power Plane Connect Rule(Direct Connect )(Expansion=0.508mm) (Conductor Width=0.254mm) (Air Gap=0.254mm) (Entries=4) (All)</a></td>
+<td class="column2">0</td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="#ID4T5WGDC5I4NGPVMKNRLOPUSH1PAA3H21TYX15EGUVK14BPKYSLOK">Hole Size Constraint (Min=0.15mm) (Max=8mm) (All)</a></td>
+<td class="column2">0</td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="#ID1N2IIE4DOU1NJYYWRCFEK0SRBNLJNLQ0BPYL2NIJIEZQGNS3V0AF">Hole To Hole Clearance (Gap=0.2mm) (All),(All)</a></td>
+<td class="column2">0</td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="#IDJR4WQGZVZV2SBP34Q1MFMQFRINUHLLSQXWW4CNGTD4QVWZDFN1BM">Minimum Solder Mask Sliver (Gap=0.127mm) (All),(All)</a></td>
+<td class="column2">0</td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="#IDSNOOBZRLWFUNJ4OQL5RMI3CORKOBXQOPNH5N2ZGFX31YUTLOSF1D">Minimum Solder Mask Sliver (Gap=0.05mm) ((InComponentClass('All Components'))),(All)</a></td>
+<td class="column2">0</td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="#IDVRE0GCRLJFMKB5UG5W0RCSDABLSPZQELAJIV0JC0DUBDNGHJUISB">Silk To Solder Mask (Clearance=0.127mm) (IsPad),(All)</a></td>
+<td class="column2">17</td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="#IDZB2O5RNGUVKYFKLLUOH4RQVOLG3KUWVKI14ULECVEWG0ZZN2DDHC">Silk to Silk (Clearance=0.127mm) (All),(All)</a></td>
+<td class="column2">0</td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="#ID14WJ2TRC3TPNDOUITSZO0X20MMDYD0FFM0RRCDOA2QEFPQCNKQVL">Net Antennae (Tolerance=0mm) (All)</a></td>
+<td class="column2">0</td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="#ID3WQPFXXH3BH0IWURMCPLTN030OR0RF5TQ4OJSHJ4WJ0WHUUEJW3I">Room Controller (Bounding Region = (12.827mm, 13.952mm, 65.446mm, 51.308mm) (InComponentClass('Controller'))</a></td>
+<td class="column2">0</td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="#IDCW0PCUJSVZQAGO1OWJ1LJKW3DX4JVR3INCYVEYOO3HJUBRJKNK">Room Motor (Bounding Region = (4.572mm, 17.399mm, 61.872mm, 55.088mm) (InComponentClass('Motor'))</a></td>
+<td class="column2">0</td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="#IDC4KHWSVV2DEFJVOTMTEVT3131JLX33NHEXBDZCOVIVIYPS2MJCZI">Height Constraint (Min=0mm) (Max=25.4mm) (Prefered=12.7mm) (All)</a></td>
+<td class="column2">0</td>
+</tr>
+<tr>
+<td style="font-weight : bold; text-align : right" class="column1">Total</td>
+<td style="font-weight : bold" class="column2">65</td>
+</tr>
+</table><br><a name="IDSPRSSUBT4Z4JEQVONMO4ALHXFH5L2CIPX5HJNMDB5Q1SRLZN31EC"><table>
+<tr>
+<th style="text-align : left" colspan="1" class="rule">Clearance Constraint (Gap=0.254mm) (All),(All)</th>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=E:\Workspace\EDA\Altium\XSS_MiniFOC_V1\XSS_MiniFOC_V1\MiniFOC_G070C_4Layer.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1344.259mil|Location2.X=1358.266mil|Location1.Y=1523.6mil|Location2.Y=1537.706mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=E:\Workspace\EDA\Altium\XSS_MiniFOC_V1\XSS_MiniFOC_V1\MiniFOC_G070C_4Layer.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1344.259mil|Location2.X=1358.266mil|Location1.Y=1523.6mil|Location2.Y=1537.706mil|Absolute=True">Clearance Constraint: (0.206mm &lt; 0.254mm) Between Region (0 hole(s)) Top Layer And Region (0 hole(s)) Top Layer </acronym></a><br></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=E:\Workspace\EDA\Altium\XSS_MiniFOC_V1\XSS_MiniFOC_V1\MiniFOC_G070C_4Layer.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1038.213mil|Location2.X=1052.219mil|Location1.Y=1301.07mil|Location2.Y=1315.176mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=E:\Workspace\EDA\Altium\XSS_MiniFOC_V1\XSS_MiniFOC_V1\MiniFOC_G070C_4Layer.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1038.213mil|Location2.X=1052.219mil|Location1.Y=1301.07mil|Location2.Y=1315.176mil|Absolute=True">Clearance Constraint: (0.206mm &lt; 0.254mm) Between Region (0 hole(s)) Top Layer And Region (0 hole(s)) Top Layer </acronym></a><br></td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=E:\Workspace\EDA\Altium\XSS_MiniFOC_V1\XSS_MiniFOC_V1\MiniFOC_G070C_4Layer.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1052.132mil|Location2.X=1066.238mil|Location1.Y=1437.326mil|Location2.Y=1451.333mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=E:\Workspace\EDA\Altium\XSS_MiniFOC_V1\XSS_MiniFOC_V1\MiniFOC_G070C_4Layer.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1052.132mil|Location2.X=1066.238mil|Location1.Y=1437.326mil|Location2.Y=1451.333mil|Absolute=True">Clearance Constraint: (0.206mm &lt; 0.254mm) Between Region (0 hole(s)) Top Layer And Region (0 hole(s)) Top Layer </acronym></a><br></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=E:\Workspace\EDA\Altium\XSS_MiniFOC_V1\XSS_MiniFOC_V1\MiniFOC_G070C_4Layer.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1330.34mil|Location2.X=1344.347mil|Location1.Y=1537.519mil|Location2.Y=1551.625mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=E:\Workspace\EDA\Altium\XSS_MiniFOC_V1\XSS_MiniFOC_V1\MiniFOC_G070C_4Layer.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1330.34mil|Location2.X=1344.347mil|Location1.Y=1537.519mil|Location2.Y=1551.625mil|Absolute=True">Clearance Constraint: (0.206mm &lt; 0.254mm) Between Region (0 hole(s)) Top Layer And Region (0 hole(s)) Top Layer </acronym></a><br></td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=E:\Workspace\EDA\Altium\XSS_MiniFOC_V1\XSS_MiniFOC_V1\MiniFOC_G070C_4Layer.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1135.649mil|Location2.X=1149.755mil|Location1.Y=1520.843mil|Location2.Y=1534.85mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=E:\Workspace\EDA\Altium\XSS_MiniFOC_V1\XSS_MiniFOC_V1\MiniFOC_G070C_4Layer.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1135.649mil|Location2.X=1149.755mil|Location1.Y=1520.843mil|Location2.Y=1534.85mil|Absolute=True">Clearance Constraint: (0.206mm &lt; 0.254mm) Between Region (0 hole(s)) Top Layer And Region (0 hole(s)) Top Layer </acronym></a><br></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=E:\Workspace\EDA\Altium\XSS_MiniFOC_V1\XSS_MiniFOC_V1\MiniFOC_G070C_4Layer.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1316.42mil|Location2.X=1330.427mil|Location1.Y=1551.439mil|Location2.Y=1565.545mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=E:\Workspace\EDA\Altium\XSS_MiniFOC_V1\XSS_MiniFOC_V1\MiniFOC_G070C_4Layer.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1316.42mil|Location2.X=1330.427mil|Location1.Y=1551.439mil|Location2.Y=1565.545mil|Absolute=True">Clearance Constraint: (0.206mm &lt; 0.254mm) Between Region (0 hole(s)) Top Layer And Region (0 hole(s)) Top Layer </acronym></a><br></td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=E:\Workspace\EDA\Altium\XSS_MiniFOC_V1\XSS_MiniFOC_V1\MiniFOC_G070C_4Layer.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1302.501mil|Location2.X=1316.508mil|Location1.Y=1565.358mil|Location2.Y=1579.464mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=E:\Workspace\EDA\Altium\XSS_MiniFOC_V1\XSS_MiniFOC_V1\MiniFOC_G070C_4Layer.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1302.501mil|Location2.X=1316.508mil|Location1.Y=1565.358mil|Location2.Y=1579.464mil|Absolute=True">Clearance Constraint: (0.206mm &lt; 0.254mm) Between Region (0 hole(s)) Top Layer And Region (0 hole(s)) Top Layer </acronym></a><br></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=E:\Workspace\EDA\Altium\XSS_MiniFOC_V1\XSS_MiniFOC_V1\MiniFOC_G070C_4Layer.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1052.132mil|Location2.X=1066.139mil|Location1.Y=1287.15mil|Location2.Y=1301.256mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=E:\Workspace\EDA\Altium\XSS_MiniFOC_V1\XSS_MiniFOC_V1\MiniFOC_G070C_4Layer.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1052.132mil|Location2.X=1066.139mil|Location1.Y=1287.15mil|Location2.Y=1301.256mil|Absolute=True">Clearance Constraint: (0.206mm &lt; 0.254mm) Between Region (0 hole(s)) Top Layer And Region (0 hole(s)) Top Layer </acronym></a><br></td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=E:\Workspace\EDA\Altium\XSS_MiniFOC_V1\XSS_MiniFOC_V1\MiniFOC_G070C_4Layer.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1038.213mil|Location2.X=1052.319mil|Location1.Y=1423.407mil|Location2.Y=1437.414mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=E:\Workspace\EDA\Altium\XSS_MiniFOC_V1\XSS_MiniFOC_V1\MiniFOC_G070C_4Layer.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1038.213mil|Location2.X=1052.319mil|Location1.Y=1423.407mil|Location2.Y=1437.414mil|Absolute=True">Clearance Constraint: (0.206mm &lt; 0.254mm) Between Region (0 hole(s)) Top Layer And Region (0 hole(s)) Top Layer </acronym></a><br></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=E:\Workspace\EDA\Altium\XSS_MiniFOC_V1\XSS_MiniFOC_V1\MiniFOC_G070C_4Layer.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1358.178mil|Location2.X=1372.185mil|Location1.Y=1509.68mil|Location2.Y=1523.786mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=E:\Workspace\EDA\Altium\XSS_MiniFOC_V1\XSS_MiniFOC_V1\MiniFOC_G070C_4Layer.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1358.178mil|Location2.X=1372.185mil|Location1.Y=1509.68mil|Location2.Y=1523.786mil|Absolute=True">Clearance Constraint: (0.206mm &lt; 0.254mm) Between Region (0 hole(s)) Top Layer And Region (0 hole(s)) Top Layer </acronym></a><br></td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=E:\Workspace\EDA\Altium\XSS_MiniFOC_V1\XSS_MiniFOC_V1\MiniFOC_G070C_4Layer.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1093.89mil|Location2.X=1107.897mil|Location1.Y=1245.392mil|Location2.Y=1259.498mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=E:\Workspace\EDA\Altium\XSS_MiniFOC_V1\XSS_MiniFOC_V1\MiniFOC_G070C_4Layer.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1093.89mil|Location2.X=1107.897mil|Location1.Y=1245.392mil|Location2.Y=1259.498mil|Absolute=True">Clearance Constraint: (0.206mm &lt; 0.254mm) Between Region (0 hole(s)) Top Layer And Region (0 hole(s)) Top Layer </acronym></a><br></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=E:\Workspace\EDA\Altium\XSS_MiniFOC_V1\XSS_MiniFOC_V1\MiniFOC_G070C_4Layer.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1079.971mil|Location2.X=1093.978mil|Location1.Y=1259.312mil|Location2.Y=1273.418mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=E:\Workspace\EDA\Altium\XSS_MiniFOC_V1\XSS_MiniFOC_V1\MiniFOC_G070C_4Layer.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1079.971mil|Location2.X=1093.978mil|Location1.Y=1259.312mil|Location2.Y=1273.418mil|Absolute=True">Clearance Constraint: (0.206mm &lt; 0.254mm) Between Region (0 hole(s)) Top Layer And Region (0 hole(s)) Top Layer </acronym></a><br></td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=E:\Workspace\EDA\Altium\XSS_MiniFOC_V1\XSS_MiniFOC_V1\MiniFOC_G070C_4Layer.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1409.338mil|Location2.X=1423.444mil|Location1.Y=1330.67mil|Location2.Y=1344.677mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=E:\Workspace\EDA\Altium\XSS_MiniFOC_V1\XSS_MiniFOC_V1\MiniFOC_G070C_4Layer.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1409.338mil|Location2.X=1423.444mil|Location1.Y=1330.67mil|Location2.Y=1344.677mil|Absolute=True">Clearance Constraint: (0.206mm &lt; 0.254mm) Between Region (0 hole(s)) Top Layer And Region (0 hole(s)) Top Layer </acronym></a><br></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=E:\Workspace\EDA\Altium\XSS_MiniFOC_V1\XSS_MiniFOC_V1\MiniFOC_G070C_4Layer.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1107.81mil|Location2.X=1121.817mil|Location1.Y=1231.473mil|Location2.Y=1245.579mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=E:\Workspace\EDA\Altium\XSS_MiniFOC_V1\XSS_MiniFOC_V1\MiniFOC_G070C_4Layer.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1107.81mil|Location2.X=1121.817mil|Location1.Y=1231.473mil|Location2.Y=1245.579mil|Absolute=True">Clearance Constraint: (0.206mm &lt; 0.254mm) Between Region (0 hole(s)) Top Layer And Region (0 hole(s)) Top Layer </acronym></a><br></td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=E:\Workspace\EDA\Altium\XSS_MiniFOC_V1\XSS_MiniFOC_V1\MiniFOC_G070C_4Layer.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1066.051mil|Location2.X=1080.058mil|Location1.Y=1273.231mil|Location2.Y=1287.337mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=E:\Workspace\EDA\Altium\XSS_MiniFOC_V1\XSS_MiniFOC_V1\MiniFOC_G070C_4Layer.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1066.051mil|Location2.X=1080.058mil|Location1.Y=1273.231mil|Location2.Y=1287.337mil|Absolute=True">Clearance Constraint: (0.206mm &lt; 0.254mm) Between Region (0 hole(s)) Top Layer And Region (0 hole(s)) Top Layer </acronym></a><br></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=E:\Workspace\EDA\Altium\XSS_MiniFOC_V1\XSS_MiniFOC_V1\MiniFOC_G070C_4Layer.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1372.098mil|Location2.X=1386.105mil|Location1.Y=1495.761mil|Location2.Y=1509.867mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=E:\Workspace\EDA\Altium\XSS_MiniFOC_V1\XSS_MiniFOC_V1\MiniFOC_G070C_4Layer.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1372.098mil|Location2.X=1386.105mil|Location1.Y=1495.761mil|Location2.Y=1509.867mil|Absolute=True">Clearance Constraint: (0.206mm &lt; 0.254mm) Between Region (0 hole(s)) Top Layer And Region (0 hole(s)) Top Layer </acronym></a><br></td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=E:\Workspace\EDA\Altium\XSS_MiniFOC_V1\XSS_MiniFOC_V1\MiniFOC_G070C_4Layer.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1038.845mil|Location2.X=1052.852mil|Location1.Y=1300.437mil|Location2.Y=1314.543mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=E:\Workspace\EDA\Altium\XSS_MiniFOC_V1\XSS_MiniFOC_V1\MiniFOC_G070C_4Layer.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1038.845mil|Location2.X=1052.852mil|Location1.Y=1300.437mil|Location2.Y=1314.543mil|Absolute=True">Clearance Constraint: (0.252mm &lt; 0.254mm) Between Region (0 hole(s)) Top Layer And Track (25.03mm,31.353mm)(27.101mm,33.424mm) on Top Layer </acronym></a><br></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=E:\Workspace\EDA\Altium\XSS_MiniFOC_V1\XSS_MiniFOC_V1\MiniFOC_G070C_4Layer.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1051.499mil|Location2.X=1065.506mil|Location1.Y=1287.783mil|Location2.Y=1301.889mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=E:\Workspace\EDA\Altium\XSS_MiniFOC_V1\XSS_MiniFOC_V1\MiniFOC_G070C_4Layer.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1051.499mil|Location2.X=1065.506mil|Location1.Y=1287.783mil|Location2.Y=1301.889mil|Absolute=True">Clearance Constraint: (0.252mm &lt; 0.254mm) Between Region (0 hole(s)) Top Layer And Track (25.03mm,31.353mm)(27.101mm,33.424mm) on Top Layer </acronym></a><br></td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=E:\Workspace\EDA\Altium\XSS_MiniFOC_V1\XSS_MiniFOC_V1\MiniFOC_G070C_4Layer.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1052.765mil|Location2.X=1066.772mil|Location1.Y=1286.518mil|Location2.Y=1300.624mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=E:\Workspace\EDA\Altium\XSS_MiniFOC_V1\XSS_MiniFOC_V1\MiniFOC_G070C_4Layer.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1052.765mil|Location2.X=1066.772mil|Location1.Y=1286.518mil|Location2.Y=1300.624mil|Absolute=True">Clearance Constraint: (0.252mm &lt; 0.254mm) Between Region (0 hole(s)) Top Layer And Track (25.75mm,31.366mm)(27.455mm,33.071mm) on Top Layer </acronym></a><br></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=E:\Workspace\EDA\Altium\XSS_MiniFOC_V1\XSS_MiniFOC_V1\MiniFOC_G070C_4Layer.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1065.419mil|Location2.X=1079.426mil|Location1.Y=1273.864mil|Location2.Y=1287.97mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=E:\Workspace\EDA\Altium\XSS_MiniFOC_V1\XSS_MiniFOC_V1\MiniFOC_G070C_4Layer.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1065.419mil|Location2.X=1079.426mil|Location1.Y=1273.864mil|Location2.Y=1287.97mil|Absolute=True">Clearance Constraint: (0.252mm &lt; 0.254mm) Between Region (0 hole(s)) Top Layer And Track (25.75mm,31.366mm)(27.455mm,33.071mm) on Top Layer </acronym></a><br></td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=E:\Workspace\EDA\Altium\XSS_MiniFOC_V1\XSS_MiniFOC_V1\MiniFOC_G070C_4Layer.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1051.499mil|Location2.X=1065.605mil|Location1.Y=1436.694mil|Location2.Y=1450.701mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=E:\Workspace\EDA\Altium\XSS_MiniFOC_V1\XSS_MiniFOC_V1\MiniFOC_G070C_4Layer.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1051.499mil|Location2.X=1065.605mil|Location1.Y=1436.694mil|Location2.Y=1450.701mil|Absolute=True">Clearance Constraint: (0.252mm &lt; 0.254mm) Between Region (0 hole(s)) Top Layer And Track (26.238mm,36.996mm)(27.101mm,36.133mm) on Top Layer </acronym></a><br></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=E:\Workspace\EDA\Altium\XSS_MiniFOC_V1\XSS_MiniFOC_V1\MiniFOC_G070C_4Layer.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1038.845mil|Location2.X=1052.951mil|Location1.Y=1424.04mil|Location2.Y=1438.047mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=E:\Workspace\EDA\Altium\XSS_MiniFOC_V1\XSS_MiniFOC_V1\MiniFOC_G070C_4Layer.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1038.845mil|Location2.X=1052.951mil|Location1.Y=1424.04mil|Location2.Y=1438.047mil|Absolute=True">Clearance Constraint: (0.252mm &lt; 0.254mm) Between Region (0 hole(s)) Top Layer And Track (26.238mm,36.996mm)(27.101mm,36.133mm) on Top Layer </acronym></a><br></td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=E:\Workspace\EDA\Altium\XSS_MiniFOC_V1\XSS_MiniFOC_V1\MiniFOC_G070C_4Layer.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1052.765mil|Location2.X=1066.871mil|Location1.Y=1437.959mil|Location2.Y=1451.966mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=E:\Workspace\EDA\Altium\XSS_MiniFOC_V1\XSS_MiniFOC_V1\MiniFOC_G070C_4Layer.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1052.765mil|Location2.X=1066.871mil|Location1.Y=1437.959mil|Location2.Y=1451.966mil|Absolute=True">Clearance Constraint: (0.252mm &lt; 0.254mm) Between Region (0 hole(s)) Top Layer And Track (26.934mm,37.008mm)(27.455mm,36.487mm) on Top Layer </acronym></a><br></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=E:\Workspace\EDA\Altium\XSS_MiniFOC_V1\XSS_MiniFOC_V1\MiniFOC_G070C_4Layer.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1094.523mil|Location2.X=1108.53mil|Location1.Y=1244.76mil|Location2.Y=1258.866mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=E:\Workspace\EDA\Altium\XSS_MiniFOC_V1\XSS_MiniFOC_V1\MiniFOC_G070C_4Layer.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1094.523mil|Location2.X=1108.53mil|Location1.Y=1244.76mil|Location2.Y=1258.866mil|Absolute=True">Clearance Constraint: (0.252mm &lt; 0.254mm) Between Region (0 hole(s)) Top Layer And Track (27.278mm,30.772mm)(28.515mm,32.01mm) on Top Layer </acronym></a><br></td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=E:\Workspace\EDA\Altium\XSS_MiniFOC_V1\XSS_MiniFOC_V1\MiniFOC_G070C_4Layer.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1107.177mil|Location2.X=1121.184mil|Location1.Y=1232.105mil|Location2.Y=1246.212mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=E:\Workspace\EDA\Altium\XSS_MiniFOC_V1\XSS_MiniFOC_V1\MiniFOC_G070C_4Layer.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1107.177mil|Location2.X=1121.184mil|Location1.Y=1232.105mil|Location2.Y=1246.212mil|Absolute=True">Clearance Constraint: (0.252mm &lt; 0.254mm) Between Region (0 hole(s)) Top Layer And Track (27.278mm,30.772mm)(28.515mm,32.01mm) on Top Layer </acronym></a><br></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=E:\Workspace\EDA\Altium\XSS_MiniFOC_V1\XSS_MiniFOC_V1\MiniFOC_G070C_4Layer.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1066.684mil|Location2.X=1080.691mil|Location1.Y=1272.598mil|Location2.Y=1286.704mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=E:\Workspace\EDA\Altium\XSS_MiniFOC_V1\XSS_MiniFOC_V1\MiniFOC_G070C_4Layer.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1066.684mil|Location2.X=1080.691mil|Location1.Y=1272.598mil|Location2.Y=1286.704mil|Absolute=True">Clearance Constraint: (0.252mm &lt; 0.254mm) Between Region (0 hole(s)) Top Layer And Track (27.287mm,32.196mm)(27.808mm,32.717mm) on Top Layer </acronym></a><br></td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=E:\Workspace\EDA\Altium\XSS_MiniFOC_V1\XSS_MiniFOC_V1\MiniFOC_G070C_4Layer.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1079.338mil|Location2.X=1093.345mil|Location1.Y=1259.944mil|Location2.Y=1274.05mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=E:\Workspace\EDA\Altium\XSS_MiniFOC_V1\XSS_MiniFOC_V1\MiniFOC_G070C_4Layer.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1079.338mil|Location2.X=1093.345mil|Location1.Y=1259.944mil|Location2.Y=1274.05mil|Absolute=True">Clearance Constraint: (0.252mm &lt; 0.254mm) Between Region (0 hole(s)) Top Layer And Track (27.287mm,32.196mm)(27.808mm,32.717mm) on Top Layer </acronym></a><br></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=E:\Workspace\EDA\Altium\XSS_MiniFOC_V1\XSS_MiniFOC_V1\MiniFOC_G070C_4Layer.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1093.257mil|Location2.X=1107.264mil|Location1.Y=1246.025mil|Location2.Y=1260.131mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=E:\Workspace\EDA\Altium\XSS_MiniFOC_V1\XSS_MiniFOC_V1\MiniFOC_G070C_4Layer.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1093.257mil|Location2.X=1107.264mil|Location1.Y=1246.025mil|Location2.Y=1260.131mil|Absolute=True">Clearance Constraint: (0.252mm &lt; 0.254mm) Between Region (0 hole(s)) Top Layer And Track (27.641mm,31.842mm)(28.162mm,32.364mm) on Top Layer </acronym></a><br></td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=E:\Workspace\EDA\Altium\XSS_MiniFOC_V1\XSS_MiniFOC_V1\MiniFOC_G070C_4Layer.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1080.603mil|Location2.X=1094.61mil|Location1.Y=1258.679mil|Location2.Y=1272.785mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=E:\Workspace\EDA\Altium\XSS_MiniFOC_V1\XSS_MiniFOC_V1\MiniFOC_G070C_4Layer.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1080.603mil|Location2.X=1094.61mil|Location1.Y=1258.679mil|Location2.Y=1272.785mil|Absolute=True">Clearance Constraint: (0.252mm &lt; 0.254mm) Between Region (0 hole(s)) Top Layer And Track (27.641mm,31.842mm)(28.162mm,32.364mm) on Top Layer </acronym></a><br></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=E:\Workspace\EDA\Altium\XSS_MiniFOC_V1\XSS_MiniFOC_V1\MiniFOC_G070C_4Layer.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1108.442mil|Location2.X=1122.449mil|Location1.Y=1230.84mil|Location2.Y=1244.946mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=E:\Workspace\EDA\Altium\XSS_MiniFOC_V1\XSS_MiniFOC_V1\MiniFOC_G070C_4Layer.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1108.442mil|Location2.X=1122.449mil|Location1.Y=1230.84mil|Location2.Y=1244.946mil|Absolute=True">Clearance Constraint: (0.252mm &lt; 0.254mm) Between Region (0 hole(s)) Top Layer And Track (28.348mm,31.135mm)(28.869mm,31.656mm) on Top Layer </acronym></a><br></td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=E:\Workspace\EDA\Altium\XSS_MiniFOC_V1\XSS_MiniFOC_V1\MiniFOC_G070C_4Layer.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1136.281mil|Location2.X=1150.387mil|Location1.Y=1521.476mil|Location2.Y=1535.483mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=E:\Workspace\EDA\Altium\XSS_MiniFOC_V1\XSS_MiniFOC_V1\MiniFOC_G070C_4Layer.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1136.281mil|Location2.X=1150.387mil|Location1.Y=1521.476mil|Location2.Y=1535.483mil|Absolute=True">Clearance Constraint: (0.252mm &lt; 0.254mm) Between Region (0 hole(s)) Top Layer And Track (28.581mm,39.603mm)(29.576mm,38.608mm) on Top Layer </acronym></a><br></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=E:\Workspace\EDA\Altium\XSS_MiniFOC_V1\XSS_MiniFOC_V1\MiniFOC_G070C_4Layer.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1135.016mil|Location2.X=1149.122mil|Location1.Y=1520.21mil|Location2.Y=1534.217mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=E:\Workspace\EDA\Altium\XSS_MiniFOC_V1\XSS_MiniFOC_V1\MiniFOC_G070C_4Layer.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1135.016mil|Location2.X=1149.122mil|Location1.Y=1520.21mil|Location2.Y=1534.217mil|Absolute=True">Clearance Constraint: (0.252mm &lt; 0.254mm) Between Region (0 hole(s)) Top Layer And Track (28.701mm,38.776mm)(29.223mm,38.255mm) on Top Layer </acronym></a><br></td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=E:\Workspace\EDA\Altium\XSS_MiniFOC_V1\XSS_MiniFOC_V1\MiniFOC_G070C_4Layer.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1301.868mil|Location2.X=1315.875mil|Location1.Y=1565.991mil|Location2.Y=1580.097mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=E:\Workspace\EDA\Altium\XSS_MiniFOC_V1\XSS_MiniFOC_V1\MiniFOC_G070C_4Layer.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1301.868mil|Location2.X=1315.875mil|Location1.Y=1565.991mil|Location2.Y=1580.097mil|Absolute=True">Clearance Constraint: (0.252mm &lt; 0.254mm) Between Region (0 hole(s)) Top Layer And Track (32.639mm,39.669mm)(33.39mm,40.42mm) on Top Layer </acronym></a><br></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=E:\Workspace\EDA\Altium\XSS_MiniFOC_V1\XSS_MiniFOC_V1\MiniFOC_G070C_4Layer.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1303.057mil|Location2.X=1317.064mil|Location1.Y=1564.802mil|Location2.Y=1578.908mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=E:\Workspace\EDA\Altium\XSS_MiniFOC_V1\XSS_MiniFOC_V1\MiniFOC_G070C_4Layer.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1303.057mil|Location2.X=1317.064mil|Location1.Y=1564.802mil|Location2.Y=1578.908mil|Absolute=True">Clearance Constraint: (0.246mm &lt; 0.254mm) Between Region (0 hole(s)) Top Layer And Track (32.992mm,39.323mm)(33.847mm,40.178mm) on Top Layer </acronym></a><br></td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=E:\Workspace\EDA\Altium\XSS_MiniFOC_V1\XSS_MiniFOC_V1\MiniFOC_G070C_4Layer.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1329.707mil|Location2.X=1343.714mil|Location1.Y=1538.152mil|Location2.Y=1552.258mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=E:\Workspace\EDA\Altium\XSS_MiniFOC_V1\XSS_MiniFOC_V1\MiniFOC_G070C_4Layer.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1329.707mil|Location2.X=1343.714mil|Location1.Y=1538.152mil|Location2.Y=1552.258mil|Absolute=True">Clearance Constraint: (0.252mm &lt; 0.254mm) Between Region (0 hole(s)) Top Layer And Track (33.346mm,38.962mm)(34.304mm,39.92mm) on Top Layer </acronym></a><br></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=E:\Workspace\EDA\Altium\XSS_MiniFOC_V1\XSS_MiniFOC_V1\MiniFOC_G070C_4Layer.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1317.053mil|Location2.X=1331.06mil|Location1.Y=1550.806mil|Location2.Y=1564.912mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=E:\Workspace\EDA\Altium\XSS_MiniFOC_V1\XSS_MiniFOC_V1\MiniFOC_G070C_4Layer.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1317.053mil|Location2.X=1331.06mil|Location1.Y=1550.806mil|Location2.Y=1564.912mil|Absolute=True">Clearance Constraint: (0.252mm &lt; 0.254mm) Between Region (0 hole(s)) Top Layer And Track (33.346mm,38.962mm)(34.304mm,39.92mm) on Top Layer </acronym></a><br></td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=E:\Workspace\EDA\Altium\XSS_MiniFOC_V1\XSS_MiniFOC_V1\MiniFOC_G070C_4Layer.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1343.626mil|Location2.X=1357.633mil|Location1.Y=1524.233mil|Location2.Y=1538.339mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=E:\Workspace\EDA\Altium\XSS_MiniFOC_V1\XSS_MiniFOC_V1\MiniFOC_G070C_4Layer.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1343.626mil|Location2.X=1357.633mil|Location1.Y=1524.233mil|Location2.Y=1538.339mil|Absolute=True">Clearance Constraint: (0.252mm &lt; 0.254mm) Between Region (0 hole(s)) Top Layer And Track (33.699mm,38.608mm)(34.761mm,39.67mm) on Top Layer </acronym></a><br></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=E:\Workspace\EDA\Altium\XSS_MiniFOC_V1\XSS_MiniFOC_V1\MiniFOC_G070C_4Layer.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1330.972mil|Location2.X=1344.979mil|Location1.Y=1536.887mil|Location2.Y=1550.993mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=E:\Workspace\EDA\Altium\XSS_MiniFOC_V1\XSS_MiniFOC_V1\MiniFOC_G070C_4Layer.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1330.972mil|Location2.X=1344.979mil|Location1.Y=1536.887mil|Location2.Y=1550.993mil|Absolute=True">Clearance Constraint: (0.252mm &lt; 0.254mm) Between Region (0 hole(s)) Top Layer And Track (33.699mm,38.608mm)(34.761mm,39.67mm) on Top Layer </acronym></a><br></td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=E:\Workspace\EDA\Altium\XSS_MiniFOC_V1\XSS_MiniFOC_V1\MiniFOC_G070C_4Layer.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1344.891mil|Location2.X=1358.899mil|Location1.Y=1522.967mil|Location2.Y=1537.073mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=E:\Workspace\EDA\Altium\XSS_MiniFOC_V1\XSS_MiniFOC_V1\MiniFOC_G070C_4Layer.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1344.891mil|Location2.X=1358.899mil|Location1.Y=1522.967mil|Location2.Y=1537.073mil|Absolute=True">Clearance Constraint: (0.252mm &lt; 0.254mm) Between Region (0 hole(s)) Top Layer And Track (34.053mm,38.255mm)(35.318mm,39.52mm) on Top Layer </acronym></a><br></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=E:\Workspace\EDA\Altium\XSS_MiniFOC_V1\XSS_MiniFOC_V1\MiniFOC_G070C_4Layer.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1357.546mil|Location2.X=1371.553mil|Location1.Y=1510.313mil|Location2.Y=1524.419mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=E:\Workspace\EDA\Altium\XSS_MiniFOC_V1\XSS_MiniFOC_V1\MiniFOC_G070C_4Layer.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1357.546mil|Location2.X=1371.553mil|Location1.Y=1510.313mil|Location2.Y=1524.419mil|Absolute=True">Clearance Constraint: (0.252mm &lt; 0.254mm) Between Region (0 hole(s)) Top Layer And Track (34.053mm,38.255mm)(35.318mm,39.52mm) on Top Layer </acronym></a><br></td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=E:\Workspace\EDA\Altium\XSS_MiniFOC_V1\XSS_MiniFOC_V1\MiniFOC_G070C_4Layer.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1371.465mil|Location2.X=1385.472mil|Location1.Y=1496.394mil|Location2.Y=1510.5mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=E:\Workspace\EDA\Altium\XSS_MiniFOC_V1\XSS_MiniFOC_V1\MiniFOC_G070C_4Layer.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1371.465mil|Location2.X=1385.472mil|Location1.Y=1496.394mil|Location2.Y=1510.5mil|Absolute=True">Clearance Constraint: (0.252mm &lt; 0.254mm) Between Region (0 hole(s)) Top Layer And Track (34.406mm,37.901mm)(35.612mm,39.106mm) on Top Layer </acronym></a><br></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=E:\Workspace\EDA\Altium\XSS_MiniFOC_V1\XSS_MiniFOC_V1\MiniFOC_G070C_4Layer.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1358.811mil|Location2.X=1372.818mil|Location1.Y=1509.048mil|Location2.Y=1523.154mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=E:\Workspace\EDA\Altium\XSS_MiniFOC_V1\XSS_MiniFOC_V1\MiniFOC_G070C_4Layer.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1358.811mil|Location2.X=1372.818mil|Location1.Y=1509.048mil|Location2.Y=1523.154mil|Absolute=True">Clearance Constraint: (0.252mm &lt; 0.254mm) Between Region (0 hole(s)) Top Layer And Track (34.406mm,37.901mm)(35.612mm,39.106mm) on Top Layer </acronym></a><br></td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=E:\Workspace\EDA\Altium\XSS_MiniFOC_V1\XSS_MiniFOC_V1\MiniFOC_G070C_4Layer.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1372.73mil|Location2.X=1386.737mil|Location1.Y=1495.128mil|Location2.Y=1509.234mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=E:\Workspace\EDA\Altium\XSS_MiniFOC_V1\XSS_MiniFOC_V1\MiniFOC_G070C_4Layer.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1372.73mil|Location2.X=1386.737mil|Location1.Y=1495.128mil|Location2.Y=1509.234mil|Absolute=True">Clearance Constraint: (0.252mm &lt; 0.254mm) Between Region (0 hole(s)) Top Layer And Track (34.76mm,37.547mm)(35.281mm,38.069mm) on Top Layer </acronym></a><br></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=E:\Workspace\EDA\Altium\XSS_MiniFOC_V1\XSS_MiniFOC_V1\MiniFOC_G070C_4Layer.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1408.705mil|Location2.X=1422.811mil|Location1.Y=1330.038mil|Location2.Y=1344.044mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=E:\Workspace\EDA\Altium\XSS_MiniFOC_V1\XSS_MiniFOC_V1\MiniFOC_G070C_4Layer.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1408.705mil|Location2.X=1422.811mil|Location1.Y=1330.038mil|Location2.Y=1344.044mil|Absolute=True">Clearance Constraint: (0.252mm &lt; 0.254mm) Between Region (0 hole(s)) Top Layer And Track (35.653mm,33.945mm)(36.174mm,33.424mm) on Top Layer </acronym></a><br></td>
+</tr>
+</table></a><hr color="#EEEEEE"><a href="#top" style="font-size: 0.9em">Back to top</a><br><br><a name="ID2AVWFTMH2HM4OV2IICZINOUCKO4LJAVVVXUJVGJZ0KS0NACCUUOE"><table>
+<tr>
+<th style="text-align : left" colspan="1" class="rule">Short-Circuit Constraint (Allowed=No) (All),(All)</th>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=E:\Workspace\EDA\Altium\XSS_MiniFOC_V1\XSS_MiniFOC_V1\MiniFOC_G070C_4Layer.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=125795.18mil|Location2.X=-125795.18mil|Location1.Y=125795.18mil|Location2.Y=-125795.18mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=E:\Workspace\EDA\Altium\XSS_MiniFOC_V1\XSS_MiniFOC_V1\MiniFOC_G070C_4Layer.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=125795.18mil|Location2.X=-125795.18mil|Location1.Y=125795.18mil|Location2.Y=-125795.18mil|Absolute=True">Short-Circuit Constraint: Between Area Fill (39.578mm,20.845mm) (39.882mm,21.734mm) on Bottom Layer And Polygon Region (1 hole(s)) Bottom Layer Location : [X = 0mm][Y = 0mm]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=E:\Workspace\EDA\Altium\XSS_MiniFOC_V1\XSS_MiniFOC_V1\MiniFOC_G070C_4Layer.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=125795.18mil|Location2.X=-125795.18mil|Location1.Y=125795.18mil|Location2.Y=-125795.18mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=E:\Workspace\EDA\Altium\XSS_MiniFOC_V1\XSS_MiniFOC_V1\MiniFOC_G070C_4Layer.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=125795.18mil|Location2.X=-125795.18mil|Location1.Y=125795.18mil|Location2.Y=-125795.18mil|Absolute=True">Short-Circuit Constraint: Between Area Fill (39.578mm,20.845mm) (39.882mm,21.734mm) on Bottom Layer And Polygon Region (2 hole(s)) Bottom Layer Location : [X = 0mm][Y = 0mm]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=E:\Workspace\EDA\Altium\XSS_MiniFOC_V1\XSS_MiniFOC_V1\MiniFOC_G070C_4Layer.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=125795.18mil|Location2.X=-125795.18mil|Location1.Y=125795.18mil|Location2.Y=-125795.18mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=E:\Workspace\EDA\Altium\XSS_MiniFOC_V1\XSS_MiniFOC_V1\MiniFOC_G070C_4Layer.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=125795.18mil|Location2.X=-125795.18mil|Location1.Y=125795.18mil|Location2.Y=-125795.18mil|Absolute=True">Short-Circuit Constraint: Between Area Fill (50.292mm,42.888mm) (50.597mm,43.777mm) on Bottom Layer And Polygon Region (0 hole(s)) Bottom Layer Location : [X = 0mm][Y = 0mm]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=E:\Workspace\EDA\Altium\XSS_MiniFOC_V1\XSS_MiniFOC_V1\MiniFOC_G070C_4Layer.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=125795.18mil|Location2.X=-125795.18mil|Location1.Y=125795.18mil|Location2.Y=-125795.18mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=E:\Workspace\EDA\Altium\XSS_MiniFOC_V1\XSS_MiniFOC_V1\MiniFOC_G070C_4Layer.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=125795.18mil|Location2.X=-125795.18mil|Location1.Y=125795.18mil|Location2.Y=-125795.18mil|Absolute=True">Short-Circuit Constraint: Between Area Fill (50.292mm,42.888mm) (50.597mm,43.777mm) on Bottom Layer And Polygon Region (1 hole(s)) Bottom Layer Location : [X = 0mm][Y = 0mm]</acronym></a><br></td>
+</tr>
+</table></a><hr color="#EEEEEE"><a href="#top" style="font-size: 0.9em">Back to top</a><br><br><a name="IDVRE0GCRLJFMKB5UG5W0RCSDABLSPZQELAJIV0JC0DUBDNGHJUISB"><table>
+<tr>
+<th style="text-align : left" colspan="1" class="rule">Silk To Solder Mask (Clearance=0.127mm) (IsPad),(All)</th>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=E:\Workspace\EDA\Altium\XSS_MiniFOC_V1\XSS_MiniFOC_V1\MiniFOC_G070C_4Layer.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1677.19mil|Location2.X=1683.44mil|Location1.Y=1287.739mil|Location2.Y=1293.989mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=E:\Workspace\EDA\Altium\XSS_MiniFOC_V1\XSS_MiniFOC_V1\MiniFOC_G070C_4Layer.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1677.19mil|Location2.X=1683.44mil|Location1.Y=1287.739mil|Location2.Y=1293.989mil|Absolute=True">Silk To Solder Mask Clearance Constraint: (0.122mm &lt; 0.127mm) Between Arc (42.68mm,32.974mm) on Top Overlay And Pad U5-1(42.68mm,32.348mm) on Top Layer [Top Overlay] to [Top Solder] clearance [0.122mm]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=E:\Workspace\EDA\Altium\XSS_MiniFOC_V1\XSS_MiniFOC_V1\MiniFOC_G070C_4Layer.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=921.036mil|Location2.X=927.286mil|Location1.Y=1697.56mil|Location2.Y=1703.81mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=E:\Workspace\EDA\Altium\XSS_MiniFOC_V1\XSS_MiniFOC_V1\MiniFOC_G070C_4Layer.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=921.036mil|Location2.X=927.286mil|Location1.Y=1697.56mil|Location2.Y=1703.81mil|Absolute=True">Silk To Solder Mask Clearance Constraint: (0.117mm &lt; 0.127mm) Between Pad U2-1(23.09mm,43.63mm) on Top Layer And Track (23.582mm,43.197mm)(23.643mm,43.197mm) on Top Overlay [Top Overlay] to [Top Solder] clearance [0.117mm]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=E:\Workspace\EDA\Altium\XSS_MiniFOC_V1\XSS_MiniFOC_V1\MiniFOC_G070C_4Layer.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=816.021mil|Location2.X=822.271mil|Location1.Y=1697.56mil|Location2.Y=1703.81mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=E:\Workspace\EDA\Altium\XSS_MiniFOC_V1\XSS_MiniFOC_V1\MiniFOC_G070C_4Layer.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=816.021mil|Location2.X=822.271mil|Location1.Y=1697.56mil|Location2.Y=1703.81mil|Absolute=True">Silk To Solder Mask Clearance Constraint: (0.117mm &lt; 0.127mm) Between Pad U2-3(21.19mm,43.63mm) on Top Layer And Track (20.632mm,43.197mm)(20.698mm,43.197mm) on Top Overlay [Top Overlay] to [Top Solder] clearance [0.117mm]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=E:\Workspace\EDA\Altium\XSS_MiniFOC_V1\XSS_MiniFOC_V1\MiniFOC_G070C_4Layer.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=816.021mil|Location2.X=822.271mil|Location1.Y=1628.56mil|Location2.Y=1634.81mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=E:\Workspace\EDA\Altium\XSS_MiniFOC_V1\XSS_MiniFOC_V1\MiniFOC_G070C_4Layer.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=816.021mil|Location2.X=822.271mil|Location1.Y=1628.56mil|Location2.Y=1634.81mil|Absolute=True">Silk To Solder Mask Clearance Constraint: (0.117mm &lt; 0.127mm) Between Pad U2-4(21.19mm,41.03mm) on Top Layer And Track (20.632mm,41.445mm)(20.698mm,41.445mm) on Top Overlay [Top Overlay] to [Top Solder] clearance [0.117mm]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=E:\Workspace\EDA\Altium\XSS_MiniFOC_V1\XSS_MiniFOC_V1\MiniFOC_G070C_4Layer.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=921.036mil|Location2.X=927.286mil|Location1.Y=1629.56mil|Location2.Y=1635.81mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=E:\Workspace\EDA\Altium\XSS_MiniFOC_V1\XSS_MiniFOC_V1\MiniFOC_G070C_4Layer.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=921.036mil|Location2.X=927.286mil|Location1.Y=1629.56mil|Location2.Y=1635.81mil|Absolute=True">Silk To Solder Mask Clearance Constraint: (0.117mm &lt; 0.127mm) Between Pad U2-5(23.09mm,41.03mm) on Top Layer And Track (23.582mm,41.47mm)(23.643mm,41.47mm) on Top Overlay [Top Overlay] to [Top Solder] clearance [0.117mm]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=E:\Workspace\EDA\Altium\XSS_MiniFOC_V1\XSS_MiniFOC_V1\MiniFOC_G070C_4Layer.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1368.922mil|Location2.X=1375.172mil|Location1.Y=1063.902mil|Location2.Y=1070.152mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=E:\Workspace\EDA\Altium\XSS_MiniFOC_V1\XSS_MiniFOC_V1\MiniFOC_G070C_4Layer.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1368.922mil|Location2.X=1375.172mil|Location1.Y=1063.902mil|Location2.Y=1070.152mil|Absolute=True">Silk To Solder Mask Clearance Constraint: (0.125mm &lt; 0.127mm) Between Pad U4-1(34.35mm,26.74mm) on Top Layer And Track (34.85mm,27.215mm)(34.85mm,27.315mm) on Top Overlay [Top Overlay] to [Top Solder] clearance [0.125mm]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=E:\Workspace\EDA\Altium\XSS_MiniFOC_V1\XSS_MiniFOC_V1\MiniFOC_G070C_4Layer.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1368.922mil|Location2.X=1375.172mil|Location1.Y=960.556mil|Location2.Y=966.806mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=E:\Workspace\EDA\Altium\XSS_MiniFOC_V1\XSS_MiniFOC_V1\MiniFOC_G070C_4Layer.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1368.922mil|Location2.X=1375.172mil|Location1.Y=960.556mil|Location2.Y=966.806mil|Absolute=True">Silk To Solder Mask Clearance Constraint: (0.125mm &lt; 0.127mm) Between Pad U4-3(34.35mm,24.84mm) on Top Layer And Track (34.85mm,24.265mm)(34.85mm,24.365mm) on Top Overlay [Top Overlay] to [Top Solder] clearance [0.125mm]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=E:\Workspace\EDA\Altium\XSS_MiniFOC_V1\XSS_MiniFOC_V1\MiniFOC_G070C_4Layer.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1431.914mil|Location2.X=1438.164mil|Location1.Y=960.556mil|Location2.Y=966.806mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=E:\Workspace\EDA\Altium\XSS_MiniFOC_V1\XSS_MiniFOC_V1\MiniFOC_G070C_4Layer.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1431.914mil|Location2.X=1438.164mil|Location1.Y=960.556mil|Location2.Y=966.806mil|Absolute=True">Silk To Solder Mask Clearance Constraint: (0.125mm &lt; 0.127mm) Between Pad U4-4(36.95mm,24.84mm) on Top Layer And Track (36.45mm,24.265mm)(36.45mm,24.365mm) on Top Overlay [Top Overlay] to [Top Solder] clearance [0.125mm]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=E:\Workspace\EDA\Altium\XSS_MiniFOC_V1\XSS_MiniFOC_V1\MiniFOC_G070C_4Layer.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1431.914mil|Location2.X=1438.164mil|Location1.Y=1063.902mil|Location2.Y=1070.152mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=E:\Workspace\EDA\Altium\XSS_MiniFOC_V1\XSS_MiniFOC_V1\MiniFOC_G070C_4Layer.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1431.914mil|Location2.X=1438.164mil|Location1.Y=1063.902mil|Location2.Y=1070.152mil|Absolute=True">Silk To Solder Mask Clearance Constraint: (0.125mm &lt; 0.127mm) Between Pad U4-5(36.95mm,26.74mm) on Top Layer And Track (36.45mm,27.215mm)(36.45mm,27.315mm) on Top Overlay [Top Overlay] to [Top Solder] clearance [0.125mm]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=E:\Workspace\EDA\Altium\XSS_MiniFOC_V1\XSS_MiniFOC_V1\MiniFOC_G070C_4Layer.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1562.623mil|Location2.X=1568.873mil|Location1.Y=1539.493mil|Location2.Y=1545.743mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=E:\Workspace\EDA\Altium\XSS_MiniFOC_V1\XSS_MiniFOC_V1\MiniFOC_G070C_4Layer.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1562.623mil|Location2.X=1568.873mil|Location1.Y=1539.493mil|Location2.Y=1545.743mil|Absolute=True">Silk To Solder Mask Clearance Constraint: (0.125mm &lt; 0.127mm) Between Pad U6-1(40.27mm,38.82mm) on Bottom Layer And Track (39.77mm,39.295mm)(39.77mm,39.395mm) on Bottom Overlay [Bottom Overlay] to [Bottom Solder] clearance [0.125mm]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=E:\Workspace\EDA\Altium\XSS_MiniFOC_V1\XSS_MiniFOC_V1\MiniFOC_G070C_4Layer.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1562.623mil|Location2.X=1568.873mil|Location1.Y=1436.147mil|Location2.Y=1442.397mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=E:\Workspace\EDA\Altium\XSS_MiniFOC_V1\XSS_MiniFOC_V1\MiniFOC_G070C_4Layer.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1562.623mil|Location2.X=1568.873mil|Location1.Y=1436.147mil|Location2.Y=1442.397mil|Absolute=True">Silk To Solder Mask Clearance Constraint: (0.125mm &lt; 0.127mm) Between Pad U6-3(40.27mm,36.92mm) on Bottom Layer And Track (39.77mm,36.345mm)(39.77mm,36.445mm) on Bottom Overlay [Bottom Overlay] to [Bottom Solder] clearance [0.125mm]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=E:\Workspace\EDA\Altium\XSS_MiniFOC_V1\XSS_MiniFOC_V1\MiniFOC_G070C_4Layer.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1499.631mil|Location2.X=1505.881mil|Location1.Y=1436.147mil|Location2.Y=1442.397mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=E:\Workspace\EDA\Altium\XSS_MiniFOC_V1\XSS_MiniFOC_V1\MiniFOC_G070C_4Layer.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1499.631mil|Location2.X=1505.881mil|Location1.Y=1436.147mil|Location2.Y=1442.397mil|Absolute=True">Silk To Solder Mask Clearance Constraint: (0.125mm &lt; 0.127mm) Between Pad U6-4(37.67mm,36.92mm) on Bottom Layer And Track (38.17mm,36.345mm)(38.17mm,36.445mm) on Bottom Overlay [Bottom Overlay] to [Bottom Solder] clearance [0.125mm]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=E:\Workspace\EDA\Altium\XSS_MiniFOC_V1\XSS_MiniFOC_V1\MiniFOC_G070C_4Layer.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1499.631mil|Location2.X=1505.881mil|Location1.Y=1539.493mil|Location2.Y=1545.743mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=E:\Workspace\EDA\Altium\XSS_MiniFOC_V1\XSS_MiniFOC_V1\MiniFOC_G070C_4Layer.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1499.631mil|Location2.X=1505.881mil|Location1.Y=1539.493mil|Location2.Y=1545.743mil|Absolute=True">Silk To Solder Mask Clearance Constraint: (0.125mm &lt; 0.127mm) Between Pad U6-5(37.67mm,38.82mm) on Bottom Layer And Track (38.17mm,39.295mm)(38.17mm,39.395mm) on Bottom Overlay [Bottom Overlay] to [Bottom Solder] clearance [0.125mm]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=E:\Workspace\EDA\Altium\XSS_MiniFOC_V1\XSS_MiniFOC_V1\MiniFOC_G070C_4Layer.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1882.801mil|Location2.X=1889.051mil|Location1.Y=1340.576mil|Location2.Y=1346.826mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=E:\Workspace\EDA\Altium\XSS_MiniFOC_V1\XSS_MiniFOC_V1\MiniFOC_G070C_4Layer.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1882.801mil|Location2.X=1889.051mil|Location1.Y=1340.576mil|Location2.Y=1346.826mil|Absolute=True">Silk To Solder Mask Clearance Constraint: (0.125mm &lt; 0.127mm) Between Pad U7-1(47.54mm,33.63mm) on Bottom Layer And Track (48.015mm,34.13mm)(48.115mm,34.13mm) on Bottom Overlay [Bottom Overlay] to [Bottom Solder] clearance [0.125mm]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=E:\Workspace\EDA\Altium\XSS_MiniFOC_V1\XSS_MiniFOC_V1\MiniFOC_G070C_4Layer.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1779.454mil|Location2.X=1785.704mil|Location1.Y=1340.576mil|Location2.Y=1346.826mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=E:\Workspace\EDA\Altium\XSS_MiniFOC_V1\XSS_MiniFOC_V1\MiniFOC_G070C_4Layer.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1779.454mil|Location2.X=1785.704mil|Location1.Y=1340.576mil|Location2.Y=1346.826mil|Absolute=True">Silk To Solder Mask Clearance Constraint: (0.125mm &lt; 0.127mm) Between Pad U7-3(45.64mm,33.63mm) on Bottom Layer And Track (45.065mm,34.13mm)(45.165mm,34.13mm) on Bottom Overlay [Bottom Overlay] to [Bottom Solder] clearance [0.125mm]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=E:\Workspace\EDA\Altium\XSS_MiniFOC_V1\XSS_MiniFOC_V1\MiniFOC_G070C_4Layer.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1779.454mil|Location2.X=1785.704mil|Location1.Y=1403.568mil|Location2.Y=1409.818mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=E:\Workspace\EDA\Altium\XSS_MiniFOC_V1\XSS_MiniFOC_V1\MiniFOC_G070C_4Layer.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1779.454mil|Location2.X=1785.704mil|Location1.Y=1403.568mil|Location2.Y=1409.818mil|Absolute=True">Silk To Solder Mask Clearance Constraint: (0.125mm &lt; 0.127mm) Between Pad U7-4(45.64mm,36.23mm) on Bottom Layer And Track (45.065mm,35.73mm)(45.165mm,35.73mm) on Bottom Overlay [Bottom Overlay] to [Bottom Solder] clearance [0.125mm]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=E:\Workspace\EDA\Altium\XSS_MiniFOC_V1\XSS_MiniFOC_V1\MiniFOC_G070C_4Layer.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1882.801mil|Location2.X=1889.051mil|Location1.Y=1403.568mil|Location2.Y=1409.818mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=E:\Workspace\EDA\Altium\XSS_MiniFOC_V1\XSS_MiniFOC_V1\MiniFOC_G070C_4Layer.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1882.801mil|Location2.X=1889.051mil|Location1.Y=1403.568mil|Location2.Y=1409.818mil|Absolute=True">Silk To Solder Mask Clearance Constraint: (0.125mm &lt; 0.127mm) Between Pad U7-5(47.54mm,36.23mm) on Bottom Layer And Track (48.015mm,35.73mm)(48.115mm,35.73mm) on Bottom Overlay [Bottom Overlay] to [Bottom Solder] clearance [0.125mm]</acronym></a><br></td>
+</tr>
+</table></a><hr color="#EEEEEE"><a href="#top" style="font-size: 0.9em">Back to top</a><br><br></body>
+</html>
