@@ -1,0 +1,19 @@
+----------------------------------------------------------------------------------------------------------------------------------
+NCDrill File Report For: MiniFOC_G070C_4Layer.PcbDoc   2023/2/20  11:35:29
+----------------------------------------------------------------------------------------------------------------------------------
+
+Layer Pair : Top Layer to Bottom Layer
+ASCII RoundHoles File : MiniFOC_G070C_4Layer.TXT
+
+Tool       Hole Size               Hole Tolerance               Hole Type       Hole Count   Plated         Tool Travel
+----------------------------------------------------------------------------------------------------------------------------------
+T1      8mil (0.2mm)                                              Round             158       PTH        11.73inch (298.01mm)
+T2      12mil (0.305mm)                                           Round             1         PTH        0.00inch (0.00mm)
+T3      20mil (0.5mm)                                             Round             6         PTH        0.25inch (6.25mm)
+T4      24mil (0.6mm)                                             Round             6         PTH        0.25inch (6.35mm)
+T5      32mil (0.8mm)                                             Round             6         PTH        0.39inch (10.00mm)
+T6      35mil (0.9mm)                                             Round             5         PTH        1.19inch (30.19mm)
+----------------------------------------------------------------------------------------------------------------------------------
+Totals                                                                              182
+
+Total Processing Time (hh:mm:ss) : 00:00:00

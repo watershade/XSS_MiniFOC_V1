@@ -1,0 +1,10 @@
+DRC Rules Export File for PCB: E:\Workspace\EDA\Altium\XSS_MiniFOC_V1\XSS_MiniFOC_V1\MiniFOC_G070C_4Layer.PcbDoc
+RuleKind=Clearance|RuleName=Clearance_TestPoints|Scope=Board|Minimum=0.00
+RuleKind=Clearance|RuleName=Clearance_NetsOnU5|Scope=Board|Minimum=7.01
+RuleKind=Width|RuleName=Width_HighPow|Scope=Board|Minimum=5.91
+RuleKind=Width|RuleName=Width_LowPow|Scope=Board|Minimum=5.91
+RuleKind=Clearance|RuleName=Clearance_SCC|Scope=Board|Minimum=7.01
+RuleKind=SolderMaskExpansion|RuleName=SolderMaskExpansion|Scope=Board|Minimum=4.00
+RuleKind=Width|RuleName=Width|Scope=Board|Minimum=5.00
+RuleKind=Clearance|RuleName=Clearance|Scope=Board|Minimum=10.00
+RuleKind=ShortCircuit|RuleName=ShortCircuit|Scope=Board|Allowed=0

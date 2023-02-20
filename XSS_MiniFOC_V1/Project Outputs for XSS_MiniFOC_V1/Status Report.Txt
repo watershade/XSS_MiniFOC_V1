@@ -1,0 +1,12 @@
+Output: NC Drill Files
+Type  : NC Drill
+From  : Project [XSS_MiniFOC_V1.PrjPcb]
+   Generated File[MiniFOC_G070C_4Layer.TXT]
+   Generated File[MiniFOC_G070C_4Layer.LDP]
+   Generated File[MiniFOC_G070C_4Layer.DRR]
+
+
+Files Generated   : 3
+Documents Printed : 0
+
+Finished Output Generation At 11:35:29 On 2023/2/20
